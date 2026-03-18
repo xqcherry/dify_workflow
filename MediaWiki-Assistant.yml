@@ -1,0 +1,607 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: MediaWiki-Assistant
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/moonshot:0.1.1@38ef545c8d4ebf72b1712d5d700b4c7fd810f291912fe40e9b149f6c27767c2b
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.1.32@20a5454088fa017b72490e1cbaeebff21094d11b13e41197591734d1c08cdbb5
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: http-request
+      id: 1773747935862-true-1773757036555-target
+      source: '1773747935862'
+      sourceHandle: 'true'
+      target: '1773757036555'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1773757036555-source-17737979869180-target
+      source: '1773757036555'
+      sourceHandle: source
+      target: '17737979869180'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1773759876060-source-1773822827808-target
+      source: '1773759876060'
+      sourceHandle: source
+      target: '1773822827808'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1773822827808-source-1773822904758-target
+      source: '1773822827808'
+      sourceHandle: source
+      target: '1773822904758'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1773747858844-source-1773747935862-target
+      source: '1773747858844'
+      sourceHandle: source
+      target: '1773747935862'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 17737979869180-source-1773759876060-target
+      source: '17737979869180'
+      sourceHandle: source
+      target: '1773759876060'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1773747935862-c75aae2d-4c39-4785-9276-8d3bd74c1f4a-1773839918351-target
+      source: '1773747935862'
+      sourceHandle: c75aae2d-4c39-4785-9276-8d3bd74c1f4a
+      target: '1773839918351'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1773839918351-source-1773840064237-target
+      source: '1773839918351'
+      sourceHandle: source
+      target: '1773840064237'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1773840064237-source-1773840327874-target
+      source: '1773840064237'
+      sourceHandle: source
+      target: '1773840327874'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: action
+          max_length: null
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: action
+        - default: ''
+          hint: ''
+          label: content
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: content
+      height: 134
+      id: '1773747858844'
+      position:
+        x: -944.6057201357064
+        y: 158.42525749263876
+      positionAbsolute:
+        x: -944.6057201357064
+        y: 158.42525749263876
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: fccc58e2-5252-428d-ab5a-75664eb002d7
+            value: add
+            varType: string
+            variable_selector:
+            - '1773747858844'
+            - action
+          id: 'true'
+          logical_operator: and
+        - case_id: c75aae2d-4c39-4785-9276-8d3bd74c1f4a
+          conditions:
+          - comparison_operator: is
+            id: dbbcc273-94d6-4ad7-b70d-9a626aa9b7bf
+            value: chat
+            varType: string
+            variable_selector:
+            - '1773747858844'
+            - action
+          id: c75aae2d-4c39-4785-9276-8d3bd74c1f4a
+          logical_operator: and
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 171
+      id: '1773747935862'
+      position:
+        x: -590.9222215752676
+        y: 114.67292885195818
+      positionAbsolute:
+        x: -590.9222215752676
+        y: 114.67292885195818
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-1510
+            key: ''
+            type: text
+            value: "{\n  \"format\": \"mediawiki\",\n  \"markdown\": {{#1773747858844.content#}}\n\
+              }"
+          type: json
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: Md2mw转化
+        type: http-request
+        url: https://api.markdowntoolbox.com/convert
+        variables: []
+      height: 136
+      id: '1773757036555'
+      position:
+        x: -326.1585200199006
+        y: -38.77677196142402
+      positionAbsolute:
+        x: -326.1585200199006
+        y: -38.77677196142402
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import json\n\ndef main(llm_res: str):\n\n    # 解析 LLM 的 JSON 输出\n\
+          \    clean_json = llm_res.replace('```json', '').replace('```', '').strip()\n\
+          \    data = json.loads(clean_json)\n    \n    return {\n        \"wiki_title\"\
+          : data.get(\"title\", \"Untitled\"),\n        \"wiki_content\": data.get(\"\
+          final_text\", \"\"),\n        \"wiki_summary\": data.get(\"summary\", \"\
+          \"),\n    }"
+        code_language: python3
+        outputs:
+          wiki_content:
+            children: null
+            type: string
+          wiki_summary:
+            children: null
+            type: string
+          wiki_title:
+            children: null
+            type: string
+        selected: false
+        title: 变量拆解
+        type: code
+        variables:
+        - value_selector:
+          - '17737979869180'
+          - text
+          value_type: string
+          variable: llm_res
+      height: 51
+      id: '1773759876060'
+      position:
+        x: -142.6738856216886
+        y: 150.42525749263888
+      positionAbsolute:
+        x: -142.6738856216886
+        y: 150.42525749263888
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1773757036555'
+          - body
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: moonshot-v1-8k
+          provider: langgenius/moonshot/moonshot
+        prompt_template:
+        - id: 8bd5eeb9-d813-4236-ab3b-5fc908054c8d
+          role: system
+          text: "# Role\n你是一个资深的 MediaWiki 文档管理员，负责将原始信息加工为标准维基百科风格的文档。\n\n# Input\n\
+            - 转换后的 MediaWiki 源码： {{#1773757036555.body#}}\n\n# Requirements (遵循 One\
+            \ True Brace Style)\n1. 标题 (title): 基于内容生成一个 UpperCamelCase 格式的英文标题。\n\
+            2. 概览 (overview): 编写一个 100 字以内的“== 概览 ==”章节，说明文档目的和受众。\n3. 摘要 (summary):\
+            \ 编写 20 字以内的中文编辑摘要。\n4. 内容整合：\n   - 顶部必须包含“== 概览 ==”章节。\n   - 概览下方强制添加“__TOC__”标记。\n\
+            \   - 随后附上转换后的源码。\n   - 所有代码块必须使用 <syntaxhighlight> 标签。\n\n# Output Format\
+            \ (必须返回纯 JSON)\n{\n  \"title\": \"GeneratedTitle\",\n  \"summary\": \"\
+            本次编辑的简要说明\",\n  \"final_text\": \"== 概览 ==\\n内容...\\n\\n__TOC__\\n\\n{{#1773757036555.body#}}\"\
+            \n}"
+        selected: false
+        structured_output_enabled: false
+        title: LLM (1)
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '17737979869180'
+      position:
+        x: -18.576522925958386
+        y: -38.77677196142402
+      positionAbsolute:
+        x: -18.576522925958386
+        y: -38.77677196142402
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import requests\n\ndef main(title: str, content: str, summary: str):\n\
+          \    # 1. 配置信息\n    api_url = \"https://csexam.gxu.edu.cn/wiki/api.php\"\
+          \n    bot_user = \"Root@DifyBot\"\n    bot_pass = \"06u8dcps6r8kb1s4frcniasddrs8bgdj\"\
+          \n    \n    headers = {\n        \"User-Agent\": \"Mozilla/5.0 (Windows\
+          \ NT 10.0; Win64; x64) AppleWebKit/537.36\",\n        \"Accept\": \"application/json\"\
+          \n    }\n\n    # 使用 Session 保持登录状态和 Cookie 一致\n    session = requests.Session()\n\
+          \n    try:\n        # 第一步：获取 Login Token\n        res1 = session.get(api_url,\
+          \ params={\n            \"action\": \"query\",\n            \"meta\": \"\
+          tokens\",\n            \"type\": \"login\",\n            \"format\": \"\
+          json\"\n        }, headers=headers, timeout=10)\n        \n        login_token\
+          \ = res1.json().get(\"query\", {}).get(\"tokens\", {}).get(\"logintoken\"\
+          )\n        if not login_token:\n            return {\"result_msg\": \"获取\
+          \ LoginToken 失败\", \"status\": \"Error\"}\n\n        # 第二步：正式登录\n      \
+          \  login_data = {\n            \"action\": \"login\",\n            \"lgname\"\
+          : bot_user,\n            \"lgpassword\": bot_pass,\n            \"lgtoken\"\
+          : login_token,\n            \"format\": \"json\"\n        }\n        \n\
+          \        res2 = session.post(api_url, data=login_data, headers=headers,\
+          \ timeout=10)\n        if res2.json().get(\"login\", {}).get(\"result\"\
+          ) != \"Success\":\n            return {\"result_msg\": \"登录 Wiki 失败\", \"\
+          status\": \"Error\"}\n\n        # 第三步：获取编辑用的 CSRF Token\n        res3 =\
+          \ session.get(api_url, params={\n            \"action\": \"query\",\n  \
+          \          \"meta\": \"tokens\",\n            \"type\": \"csrf\",\n    \
+          \        \"format\": \"json\"\n        }, headers=headers)\n        \n \
+          \       csrf_token = res3.json().get(\"query\", {}).get(\"tokens\", {}).get(\"\
+          csrftoken\", \"\")\n        if not csrf_token:\n            return {\"result_msg\"\
+          : \"获取 CSRF Token 失败\", \"status\": \"Error\"}\n\n        # 第四步：执行写入 (使用你要求的变量名)\n\
+          \        edit_data = {\n            \"action\": \"edit\",\n            \"\
+          title\": title,\n            \"text\": content,\n            \"summary\"\
+          : summary if summary else \"Sync via Dify Bot\",\n            \"token\"\
+          : csrf_token,\n            \"format\": \"json\"\n        }\n        \n \
+          \       res4 = session.post(api_url, data=edit_data, headers=headers, timeout=15)\n\
+          \        edit_res = res4.json()\n\n        # 第五步：解析并返回结果\n        if edit_res.get(\"\
+          edit\", {}).get(\"result\") == \"Success\":\n            return {\n    \
+          \            \"result_msg\": f\"写入成功！页面：{title}\",\n                \"status\"\
+          : \"Success\"\n            }\n        else:\n            error_info = edit_res.get(\"\
+          error\", {}).get(\"info\", \"未知错误\")\n            return {\n           \
+          \     \"result_msg\": f\"写入失败: {error_info}\",\n                \"status\"\
+          : \"Fail\"\n            }\n\n    except Exception as e:\n        return\
+          \ {\n            \"result_msg\": f\"运行异常: {str(e)}\",\n            \"status\"\
+          : \"Exception\"\n        }"
+        code_language: python3
+        outputs:
+          result_msg:
+            children: null
+            type: string
+          status:
+            children: null
+            type: string
+        selected: false
+        title: 登录和写入wiki
+        type: code
+        variables:
+        - value_selector:
+          - '1773759876060'
+          - wiki_title
+          value_type: string
+          variable: title
+        - value_selector:
+          - '1773759876060'
+          - wiki_content
+          value_type: string
+          variable: content
+        - value_selector:
+          - '1773759876060'
+          - wiki_summary
+          value_type: string
+          variable: summary
+      height: 51
+      id: '1773822827808'
+      position:
+        x: 181.10212567234151
+        y: 150.42525749263888
+      positionAbsolute:
+        x: 181.10212567234151
+        y: 150.42525749263888
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1773822827808'
+          - result_msg
+          value_type: string
+          variable: result_msg
+        - value_selector:
+          - '1773822827808'
+          - status
+          value_type: string
+          variable: status
+        selected: false
+        title: 输出 3
+        type: end
+      height: 113
+      id: '1773822904758'
+      position:
+        x: 504.9623002364327
+        y: 150.42525749263888
+      positionAbsolute:
+        x: 504.9623002364327
+        y: 150.42525749263888
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        dataset_ids:
+        - cZU247h0HlMMOfLcSrvW+o4Yn7zVGaqdqxwwi/AxX5rNptoa/ClURZ2DyHNUBEpR
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: gte-rerank
+            provider: langgenius/tongyi/tongyi
+          top_k: 4
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1773747858844'
+        - content
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 89
+      id: '1773839918351'
+      position:
+        x: -311.35916044386653
+        y: 278.9935204191399
+      positionAbsolute:
+        x: -311.35916044386653
+        y: 278.9935204191399
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1773839918351'
+          - result
+        model:
+          completion_params:
+            temperature: 0.1
+            top_p: 0.7
+          mode: chat
+          name: moonshot-v1-8k
+          provider: langgenius/moonshot/moonshot
+        prompt_template:
+        - id: 40c02d66-1a35-4138-a939-9783e62acc32
+          role: system
+          text: '# Role
+
+            你是广西大学 ICPC 集训队的技术助理（GxuICPC Assistant）。你的职责是根据提供的 Wiki 资料，准确、专业地回答用户的问题。
+
+
+            # Instruction
+
+            1. **严格限制**：只能使用【已知 Wiki 信息】中的内容来回答。绝不能使用你自身的训练数据或互联网上的通用知识。
+
+            2. **拒绝回答**：如果提供的 Wiki 信息中**完全没有提及**用户的问题，你必须直接、诚实地回答：“抱歉，Wiki 中暂未记录此内容，请咨询管理人员。”
+
+            3. **安全第一**：如果找到的信息涉及敏感数据（如服务器密码、API Key），请在回复中进行必要的脱敏处理（例如：`p****rd`），并提醒用户注意安全，不要在公共群聊直接发送完整密码。
+
+            4. **语气要求**：保持专业、简洁、友好的技术人员语气。直接给出答案，不要有过多的客套话。
+
+            5. **格式化**：如果回答涉及命令、配置文件或步骤，请使用标准 Markdown 格式（代码块、列表）输出，方便用户阅读。
+
+
+            # Knowledges
+
+            以下是用户提问相关的【已知 Wiki 信息】：
+
+            {{#context#}}
+
+
+            # User Question
+
+            {{#1773747858844.content#}}'
+        selected: false
+        structured_output_enabled: false
+        title: LLM 2
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1773840064237'
+      position:
+        x: -18.576522925958386
+        y: 278.9935204191399
+      positionAbsolute:
+        x: -18.576522925958386
+        y: 278.9935204191399
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1773840064237'
+          - text
+          value_type: string
+          variable: text
+        selected: false
+        title: 输出 2
+        type: end
+      height: 87
+      id: '1773840327874'
+      position:
+        x: 278.0707242575609
+        y: 278.9935204191399
+      positionAbsolute:
+        x: 278.0707242575609
+        y: 278.9935204191399
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: 520.8735952056471
+      y: 75.97612315948885
+      zoom: 1.3195079107728982
+  rag_pipeline_variables: []
